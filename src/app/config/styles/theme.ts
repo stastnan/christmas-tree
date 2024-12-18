@@ -24,7 +24,7 @@ theme.typography.h1 = {
 };
 
 theme.typography.h2 = {
-  fontFamily: FontFamilies.roboto,
+  fontFamily: FontFamilies.dmSans,
   fontWeight: FontWeights.regular,
   fontSize: "1.2rem",
   lineHeight: "1.6rem",
@@ -72,7 +72,7 @@ theme.typography.subtitle1 = {
 };
 
 theme.typography.subtitle2 = {
-  fontFamily: FontFamilies.roboto,
+  fontFamily: FontFamilies.dmSans,
   fontWeight: FontWeights.regular,
   fontSize: "1rem",
   lineHeight: "1.5rem",

@@ -18,8 +18,10 @@ import Step6 from "../steps/step6/Step6";
 import Step7 from "../steps/step7/Step7";
 import AppButton from "./AppButton";
 
-function CustomStepIcon(props: { active: boolean; completed: boolean }) {
-  const { active, completed } = props;
+import { StepIconProps } from "@mui/material";
+
+function CustomStepIcon(props: StepIconProps) {
+  const { active = false, completed = false } = props;
 
   if (active) {
     return <Star sx={{ color: Color.BrightOrange }} />;
@@ -29,7 +31,6 @@ function CustomStepIcon(props: { active: boolean; completed: boolean }) {
     return <StarOutline sx={{ color: Color.DarkerOrange }} />;
   }
 }
-
 export default function DesktopStepper() {
   const [stepComplete, setStepComplete] = useState<boolean>(true);
   const { activeStep, goToNextStep, goToPreviousStep } = useStepNavigation(

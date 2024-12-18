@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# Christmas Tree Decoration App 🎄
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Christmas Tree Decoration App! This fun and interactive app lets you decorate a virtual Christmas tree by dragging and dropping ornaments. Whether you have pets or not, the app brings a little holiday cheer to everyone!
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Drag and Drop: Effortlessly decorate your tree with various ornaments.
+- A Little Bit of Fun: Watch out for surprises if you have pets!
+- Pet-Friendly Fun: No pets were injured during the tree decoration. 🐾
 
-## Expanding the ESLint configuration
+- **[Visit Happy Christmas Website](https://christmas-tree-psi.vercel.app)**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Clone & Setup
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Ensure you have the following installed on your system:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Node.js** (recommended: the latest stable version)
+- **Yarn** package manager
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Check installation:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- node -v
+- yarn -v
+
+**Repository Cloning:**
+git clone https://github.com/stastnan/christmas-tree.git
+cd christmas-tree
+
+**Installing Dependencies:**
+
+- yarn install
+
+**Running the Project:**
+
+- yarn dev
+  This command starts the project on your local server.
+
+I’m always open to networking, opportunities, and collaborations. Feel free to reach out to me via email at nik.stastna@gmail.com.
+
+I'm also #openToWork!

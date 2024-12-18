@@ -1,0 +1,17 @@
+export const Color = {
+  BellYellow: "#F4B400",
+  TreeGreen: "#2E7D32",
+  WaxLight: "#FFF8DC",
+  TrunkBrown: "#8B4513",
+  CranberryRed: "#D32F2F",
+  FrostedBlue: "#90CAF9",
+  RoyalPurple: " #7E57C2",
+  DarkerOrange: "#FFB74D",
+  LightCream: "#FFF3E0",
+  SoftOrange: "#FFA726",
+  BrightOrange: "#FBA727",
+  Gold: "#FFD700",
+  Charcoal: "#565554",
+  DarkGreen: "#5BB066",
+  DarkRed: "#84090C",
+};

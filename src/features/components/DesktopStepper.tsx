@@ -10,13 +10,13 @@ import {
   MOBILE_FOOTER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "../../app/config/constants";
-import AppButton from "../onboarding/AppButton";
 import { Color } from "../../app/config/styles/colors";
 import Step4 from "../steps/step4/Step4";
 import Step5 from "../steps/step5/Step5";
 import { useState } from "react";
 import Step6 from "../steps/step6/Step6";
 import Step7 from "../steps/step7/Step7";
+import AppButton from "./AppButton";
 
 function CustomStepIcon(props: { active: boolean; completed: boolean }) {
   const { active, completed } = props;

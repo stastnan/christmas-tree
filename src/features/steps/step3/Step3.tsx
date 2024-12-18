@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Typography, Stack } from "@mui/material";
 import useToast from "../../../app/hooks/useToast";
 import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
-import AppButton from "../../onboarding/AppButton";
 import { Color } from "../../../app/config/styles/colors";
+import AppButton from "../../components/AppButton";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;

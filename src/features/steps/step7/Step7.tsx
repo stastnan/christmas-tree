@@ -1,7 +1,13 @@
 import { Stack, Typography } from "@mui/material";
 import { Color } from "../../../app/config/styles/colors";
+import Navigation from "../../components/Navigation";
 
-export default function Step7() {
+interface Props {
+  goToPreviousStep: () => void;
+  activeStep: number;
+}
+
+export default function Step7({ activeStep, goToPreviousStep }: Props) {
   const userName = localStorage.getItem("userName") || "there";
   const petChoice = localStorage.getItem("petChoice") as
     | "dog"
@@ -53,6 +59,7 @@ export default function Step7() {
       >
         Merry Christmas, {userName}!
       </Typography>
+      <Navigation activeStep={activeStep} goToPreviousStep={goToPreviousStep} />
     </Stack>
   );
 }

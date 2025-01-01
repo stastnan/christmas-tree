@@ -11,12 +11,24 @@ import Star from "./Star";
 import { Color } from "../../../app/config/styles/colors";
 import { useEffect } from "react";
 import Bow from "./Bow";
+import Navigation from "../../components/Navigation";
+import { DESKTOP_FOOTER_HEIGHT } from "../../../app/config/constants";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
+  stepComplete: boolean;
+  activeStep: number;
+  goToPreviousStep: () => void;
+  goToNextStep: () => void;
 }
 
-function Step4({ setStepComplete }: Props) {
+function Step4({
+  setStepComplete,
+  stepComplete,
+  activeStep,
+  goToPreviousStep,
+  goToNextStep,
+}: Props) {
   const { md } = useBreakpoints();
 
   useEffect(() => {
@@ -32,8 +44,7 @@ function Step4({ setStepComplete }: Props) {
       <Stack
         sx={{
           width: "100%",
-          height: "100%",
-
+          height: `calc(100% - ${DESKTOP_FOOTER_HEIGHT}px)`,
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
@@ -63,6 +74,12 @@ function Step4({ setStepComplete }: Props) {
           <Star size="1.5rem" color={Color.SoftOrange} />
           <Bow size="2rem" color={Color.DarkRed} />
         </Stack>
+        <Navigation
+          activeStep={activeStep}
+          stepComplete={stepComplete}
+          goToNextStep={goToNextStep}
+          goToPreviousStep={goToPreviousStep}
+        />
       </Stack>
     </DndProvider>
   );

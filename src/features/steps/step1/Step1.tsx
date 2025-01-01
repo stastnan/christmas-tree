@@ -1,11 +1,20 @@
 import { Stack, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import Navigation from "../../components/Navigation";
+import { useEffect } from "react";
 
 interface Props {
+  activeStep: number;
+  stepComplete: boolean;
+  goToNextStep: () => void;
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Step1({ setStepComplete }: Props) {
+function Step1({
+  activeStep,
+  goToNextStep,
+  stepComplete,
+  setStepComplete,
+}: Props) {
   useEffect(() => {
     setStepComplete(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,6 +40,12 @@ function Step1({ setStepComplete }: Props) {
         few quick steps, a sprinkle of chaos, and boom - holiday magic! Let's do
         this! 🎅✨
       </Typography>
+
+      <Navigation
+        activeStep={activeStep}
+        stepComplete={stepComplete}
+        goToNextStep={goToNextStep}
+      />
     </Stack>
   );
 }

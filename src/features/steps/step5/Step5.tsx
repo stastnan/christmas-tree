@@ -5,12 +5,23 @@ import Cat from "./Cat";
 import Dog from "./Dog";
 import DecoratedTree from "../../components/DecoratedTree";
 import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
+import Navigation from "../../components/Navigation";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
+  stepComplete: boolean;
+  activeStep: number;
+  goToNextStep: () => void;
+  goToPreviousStep: () => void;
 }
 
-function Step5({ setStepComplete }: Props) {
+function Step5({
+  setStepComplete,
+  stepComplete,
+  activeStep,
+  goToNextStep,
+  goToPreviousStep,
+}: Props) {
   const [pet, setPet] = useState<"cat" | "dog" | null>(null);
   const [startTreeFall, setStartTreeFall] = useState(false);
   const { md } = useBreakpoints();
@@ -20,6 +31,7 @@ function Step5({ setStepComplete }: Props) {
     const savedPet = localStorage.getItem("petChoice") as "cat" | "dog" | null;
     let petTimeoutId: ReturnType<typeof setTimeout>;
     let treeTimeoutId: ReturnType<typeof setTimeout>;
+    let showNavigationId: ReturnType<typeof setTimeout>;
 
     if (savedPet) {
       petTimeoutId = setTimeout(() => {
@@ -27,16 +39,20 @@ function Step5({ setStepComplete }: Props) {
 
         treeTimeoutId = setTimeout(() => {
           setStartTreeFall(true);
-          setStepComplete(true);
         }, 500);
+
+        showNavigationId = setTimeout(() => {
+          setStepComplete(true);
+        }, 1000);
       }, 2000);
     }
 
     return () => {
       clearTimeout(petTimeoutId);
       clearTimeout(treeTimeoutId);
+      clearTimeout(showNavigationId);
     };
-  }, [setStepComplete]);
+  }, []);
 
   return (
     <Stack
@@ -72,6 +88,14 @@ function Step5({ setStepComplete }: Props) {
         >
           {pet === "cat" ? <Cat size={100} /> : <Dog size={100} />}
         </motion.div>
+      )}
+      {stepComplete && (
+        <Navigation
+          activeStep={activeStep}
+          goToNextStep={goToNextStep}
+          goToPreviousStep={goToPreviousStep}
+          stepComplete={stepComplete}
+        />
       )}
     </Stack>
   );

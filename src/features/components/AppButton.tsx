@@ -4,9 +4,7 @@ import { Color } from "../../app/config/styles/colors";
 interface Props {
   type?: "button" | "submit" | "reset";
   variant?: "text" | "contained" | "outlined";
-
   onClick?: () => void;
-
   disabled?: boolean;
   text: string;
   sx?: SxProps<Theme>;

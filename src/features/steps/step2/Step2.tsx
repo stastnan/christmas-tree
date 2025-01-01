@@ -2,13 +2,23 @@ import { useEffect, useState } from "react";
 import { TextField, Typography, Stack } from "@mui/material";
 import useToast from "../../../app/hooks/useToast";
 import { Color } from "../../../app/config/styles/colors";
-import AppButton from "../../components/AppButton";
+import Navigation from "../../components/Navigation";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
+  stepComplete: boolean;
+  activeStep: number;
+  goToPreviousStep: () => void;
+  goToNextStep: () => void;
 }
 
-function Step2({ setStepComplete }: Props) {
+function Step2({
+  activeStep,
+  goToPreviousStep,
+  goToNextStep,
+  setStepComplete,
+  stepComplete,
+}: Props) {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
@@ -20,15 +30,16 @@ function Step2({ setStepComplete }: Props) {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(event.target.value);
+    setStepComplete(true);
   };
 
-  const handleSaveName = () => {
+  const handleSaveAndNextStep = () => {
     if (!userName.trim()) {
       showErrorMessage("Name cannot be empty!");
       return;
     }
 
-    if (userName.length < 2) {
+    if (userName.trim().length < 2) {
       showErrorMessage(
         "Please enter a valid name, that is longer than 2 characters!"
       );
@@ -37,7 +48,7 @@ function Step2({ setStepComplete }: Props) {
 
     localStorage.setItem("userName", userName.trim());
     showSuccessMessage("Name saved successfully!");
-    setStepComplete(true);
+    goToNextStep();
   };
 
   return (
@@ -80,17 +91,11 @@ function Step2({ setStepComplete }: Props) {
           },
         }}
       />
-      <AppButton
-        text="Save"
-        onClick={handleSaveName}
-        sx={{
-          width: "300px",
-          backgroundColor: Color.SoftOrange,
-          color: "#fff",
-          "&:hover": {
-            backgroundColor: "#FFB74D",
-          },
-        }}
+      <Navigation
+        activeStep={activeStep}
+        goToNextStep={handleSaveAndNextStep}
+        goToPreviousStep={goToPreviousStep}
+        stepComplete={stepComplete}
       />
     </Stack>
   );

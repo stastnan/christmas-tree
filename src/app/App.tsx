@@ -21,6 +21,7 @@ function App() {
     `,
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
+          overflowY: "hidden",
         }}
       >
         <DesktopStepper />

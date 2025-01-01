@@ -6,3 +6,5 @@ export const MOBILE_HEADER_HEIGHT = 92.5;
 export const DESKTOP_HEADER_HEIGHT = 80;
 export const MOBILE_FOOTER_HEIGHT = 90;
 export const DESKTOP_FOOTER_HEIGHT = 116;
+
+export const LAST_STEP = 5;

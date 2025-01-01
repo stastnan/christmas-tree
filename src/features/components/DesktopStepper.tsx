@@ -5,7 +5,6 @@ import Step1 from "../steps/step1/Step1";
 import Step2 from "../steps/step2/Step2";
 import Step3 from "../steps/step3/Step3";
 import {
-  DESKTOP_FOOTER_HEIGHT,
   DESKTOP_HEADER_HEIGHT,
   MOBILE_FOOTER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
@@ -16,8 +15,6 @@ import Step5 from "../steps/step5/Step5";
 import { useState } from "react";
 import Step6 from "../steps/step6/Step6";
 import Step7 from "../steps/step7/Step7";
-import AppButton from "./AppButton";
-
 import { StepIconProps } from "@mui/material";
 
 function CustomStepIcon(props: StepIconProps) {
@@ -60,12 +57,13 @@ export default function DesktopStepper() {
         direction="row"
         sx={{
           height: {
-            xs: `${MOBILE_HEADER_HEIGHT}px`,
+            xs: `calc(${MOBILE_HEADER_HEIGHT}px)`,
             md: `${DESKTOP_HEADER_HEIGHT}px`,
           },
           width: "100%",
           justifyContent: "space-between",
           alignItems: "center",
+          overflowY: "hidden",
         }}
       >
         <Stepper
@@ -99,63 +97,70 @@ export default function DesktopStepper() {
       </Stack>
       <Box
         sx={{
-          mt: 4,
-          mb: 2,
+          mt: { xs: -2, md: 4 },
+          mb: { xs: 5, md: 2 },
           px: { xs: "2rem", md: 0 },
           height: {
-            xs: `calc(60vh - ${MOBILE_HEADER_HEIGHT}px)`,
+            xs: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px - ${MOBILE_FOOTER_HEIGHT}px)`,
+            md: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
           },
         }}
       >
-        {activeStep === 0 && <Step1 setStepComplete={setStepComplete} />}
-        {activeStep === 1 && <Step2 setStepComplete={setStepComplete} />}
-        {activeStep === 2 && <Step3 setStepComplete={setStepComplete} />}
-        {activeStep === 3 && <Step4 setStepComplete={setStepComplete} />}
-        {activeStep === 4 && isPet && (
-          <Step5 setStepComplete={setStepComplete} />
-        )}
-        {activeStep === 4 && !isPet && <Step6 />}
-        {activeStep === 5 && <Step7 />}
-      </Box>
-      <Box
-        sx={{
-          height: {
-            xs: `${MOBILE_FOOTER_HEIGHT}px`,
-            md: `${DESKTOP_FOOTER_HEIGHT}px`,
-          },
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          px: { xs: "1rem", md: "3rem" },
-        }}
-      >
-        <AppButton
-          text="Back"
-          variant="outlined"
-          onClick={goToPreviousStep}
-          disabled={activeStep === 0}
-          sx={{
-            color: Color.SoftOrange,
-            borderColor: Color.SoftOrange,
-            "&:hover": {
-              borderColor: Color.SoftOrange,
-              backgroundColor: Color.LightCream,
-            },
-          }}
-        />
-        {activeStep < 5 && (
-          <AppButton
-            text="Next"
-            variant="contained"
-            onClick={goToNextStep}
-            disabled={!stepComplete}
-            sx={{
-              backgroundColor: Color.SoftOrange,
-              "&:hover": {
-                backgroundColor: Color.DarkerOrange,
-              },
-            }}
+        {activeStep === 0 && (
+          <Step1
+            activeStep={activeStep}
+            goToNextStep={goToNextStep}
+            stepComplete={stepComplete}
+            setStepComplete={setStepComplete}
           />
+        )}
+        {activeStep === 1 && (
+          <Step2
+            setStepComplete={setStepComplete}
+            stepComplete={stepComplete}
+            activeStep={activeStep}
+            goToPreviousStep={goToPreviousStep}
+            goToNextStep={goToNextStep}
+          />
+        )}
+        {activeStep === 2 && (
+          <Step3
+            setStepComplete={setStepComplete}
+            stepComplete={stepComplete}
+            activeStep={activeStep}
+            goToPreviousStep={goToPreviousStep}
+            goToNextStep={goToNextStep}
+          />
+        )}
+        {activeStep === 3 && (
+          <Step4
+            setStepComplete={setStepComplete}
+            stepComplete={stepComplete}
+            activeStep={activeStep}
+            goToPreviousStep={goToPreviousStep}
+            goToNextStep={goToNextStep}
+          />
+        )}
+        {activeStep === 4 && isPet && (
+          <Step5
+            setStepComplete={setStepComplete}
+            activeStep={activeStep}
+            goToPreviousStep={goToPreviousStep}
+            stepComplete={stepComplete}
+            goToNextStep={goToNextStep}
+          />
+        )}
+        {activeStep === 4 && !isPet && (
+          <Step6
+            activeStep={activeStep}
+            goToPreviousStep={goToPreviousStep}
+            goToNextStep={goToNextStep}
+            stepComplete={stepComplete}
+            setStepComplete={setStepComplete}
+          />
+        )}
+        {activeStep === 5 && (
+          <Step7 activeStep={activeStep} goToPreviousStep={goToPreviousStep} />
         )}
       </Box>
     </Stack>

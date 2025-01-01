@@ -4,11 +4,22 @@ import useToast from "../../../app/hooks/useToast";
 import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
 import { Color } from "../../../app/config/styles/colors";
 import AppButton from "../../components/AppButton";
+import Navigation from "../../components/Navigation";
 
 interface Props {
+  activeStep: number;
+  goToPreviousStep: () => void;
+  goToNextStep: () => void;
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
+  stepComplete: boolean;
 }
-function Step3({ setStepComplete }: Props) {
+function Step3({
+  activeStep,
+  goToPreviousStep,
+  goToNextStep,
+  setStepComplete,
+  stepComplete,
+}: Props) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const { showErrorMessage, showSuccessMessage } = useToast();
   const { md } = useBreakpoints();
@@ -20,17 +31,18 @@ function Step3({ setStepComplete }: Props) {
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
+    setStepComplete(true);
   };
 
-  const handleSaveChoice = () => {
+  const handleNextStep = () => {
     if (!selectedOption) {
       showErrorMessage("Please select an option before proceeding!");
       return;
     }
 
     localStorage.setItem("petChoice", selectedOption);
+    goToNextStep();
     showSuccessMessage(`You chose: ${selectedOption}`);
-    setStepComplete(true);
   };
 
   return (
@@ -38,7 +50,7 @@ function Step3({ setStepComplete }: Props) {
       sx={{
         justifyContent: "center",
         alignItems: "center",
-        height: { xs: "100%", md: "auto" },
+        height: "100%",
         width: "100%",
         gap: 4,
       }}
@@ -59,7 +71,7 @@ function Step3({ setStepComplete }: Props) {
         gap={md ? 3 : 2}
         direction="row"
         sx={{
-          height: "100%",
+          height: "auto",
           width: md ? "auto" : "300px",
           justifyContent: "center",
           alignItems: "center",
@@ -118,18 +130,11 @@ function Step3({ setStepComplete }: Props) {
         />
       </Stack>
 
-      <AppButton
-        text="Save"
-        onClick={handleSaveChoice}
-        sx={{
-          width: { xs: "100%", md: "300px" },
-          height: { xs: "10rem", md: "auto" },
-          backgroundColor: Color.SoftOrange,
-          color: "#fff",
-          "&:hover": {
-            backgroundColor: Color.DarkerOrange,
-          },
-        }}
+      <Navigation
+        goToNextStep={handleNextStep}
+        activeStep={activeStep}
+        goToPreviousStep={goToPreviousStep}
+        stepComplete={stepComplete}
       />
     </Stack>
   );

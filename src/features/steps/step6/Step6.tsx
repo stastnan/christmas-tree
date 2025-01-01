@@ -2,9 +2,30 @@ import { Box, Stack } from "@mui/material";
 import GiftBox from "../../components/GiftBox";
 import DecoratedTree from "../../components/DecoratedTree";
 import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
+import Navigation from "../../components/Navigation";
+import { useEffect } from "react";
 
-function Step6() {
+interface Props {
+  goToPreviousStep: () => void;
+  goToNextStep: () => void;
+  activeStep: number;
+  stepComplete: boolean;
+  setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Step6({
+  goToPreviousStep,
+  goToNextStep,
+  activeStep,
+  setStepComplete,
+  stepComplete,
+}: Props) {
   const { md } = useBreakpoints();
+
+  useEffect(() => {
+    setStepComplete(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Stack
@@ -41,7 +62,7 @@ function Step6() {
           position: "absolute",
           zIndex: 50,
           bottom: { xs: "15%", md: "17%" },
-          left: { xs: "48%", md: "-100%" },
+          left: { xs: "48%", md: "60%" },
         }}
       >
         <GiftBox
@@ -49,6 +70,36 @@ function Step6() {
           height={md ? "3.7rem" : "5rem"}
         />
       </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          zIndex: 50,
+          bottom: { xs: "13%", md: "16%" },
+          left: { xs: "48%", md: "41%" },
+        }}
+      >
+        <GiftBox width={md ? "5rem" : "2.5rem"} height={md ? "8rem" : "5rem"} />
+      </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          zIndex: 50,
+          bottom: { xs: "15%", md: "27%" },
+          left: { xs: "48%", md: "-80%" },
+        }}
+      >
+        <GiftBox
+          width={md ? "7rem" : "2.5rem"}
+          height={md ? "4.8rem" : "5rem"}
+        />
+      </Box>
+
+      <Navigation
+        activeStep={activeStep}
+        goToPreviousStep={goToPreviousStep}
+        stepComplete={stepComplete}
+        goToNextStep={goToNextStep}
+      />
     </Stack>
   );
 }

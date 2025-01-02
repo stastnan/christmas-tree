@@ -1,4 +1,5 @@
 import { Box, Stack } from "@mui/material";
+import { motion } from "framer-motion";
 import GiftBox from "../../components/GiftBox";
 import DecoratedTree from "../../components/DecoratedTree";
 import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
@@ -20,12 +21,27 @@ function Step6({
   setStepComplete,
   stepComplete,
 }: Props) {
-  const { md } = useBreakpoints();
+  const { sm, md } = useBreakpoints();
 
   useEffect(() => {
     setStepComplete(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const giftVariants = {
+    hidden: {
+      scale: 0,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 1.5,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
     <Stack
@@ -42,57 +58,90 @@ function Step6({
       <Box sx={{ position: "relative" }}>
         <DecoratedTree />
       </Box>
-      <Box
-        sx={{ position: "absolute", zIndex: 50, bottom: "20%", left: "30%" }}
-      >
-        <GiftBox width={md ? "8rem" : "4rem"} height={md ? "8rem" : "4rem"} />
-      </Box>
-      <Box
-        sx={{
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={giftVariants}
+        transition={{ delay: 2, duration: 1.5, ease: "easeOut" }}
+        style={{
           position: "absolute",
           zIndex: 50,
-          bottom: { xs: "20%", md: "15%" },
-          left: { xs: "60%", md: "50%" },
+          bottom: "14%",
+          left: "29%",
+        }}
+      >
+        <GiftBox width={md ? "8rem" : "4rem"} height={md ? "8rem" : "4rem"} />
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={giftVariants}
+        transition={{ delay: 2.7, duration: 1.5, ease: "easeOut" }}
+        style={{
+          position: "absolute",
+          zIndex: 50,
+          bottom: sm ? "15%" : "14%",
+          left: sm ? "50%" : "61%",
         }}
       >
         <GiftBox width={md ? "6rem" : "2rem"} height={md ? "5rem" : "3rem"} />
-      </Box>
-      <Box
-        sx={{
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={giftVariants}
+        transition={{ delay: 3.4, duration: 1.5, ease: "easeOut" }}
+        style={{
           position: "absolute",
           zIndex: 50,
-          bottom: { xs: "15%", md: "17%" },
-          left: { xs: "48%", md: "60%" },
+          bottom: sm ? "17%" : "15%",
+          left: sm ? "37%" : "65%",
         }}
       >
         <GiftBox
-          width={md ? "5rem" : "2.5rem"}
+          width={md ? "5rem" : "3.5rem"}
           height={md ? "3.7rem" : "5rem"}
         />
-      </Box>
-      <Box
-        sx={{
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={giftVariants}
+        transition={{ delay: 4.1, duration: 1.5, ease: "easeOut" }}
+        style={{
           position: "absolute",
           zIndex: 50,
-          bottom: { xs: "13%", md: "16%" },
-          left: { xs: "48%", md: "41%" },
-        }}
-      >
-        <GiftBox width={md ? "5rem" : "2.5rem"} height={md ? "8rem" : "5rem"} />
-      </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          zIndex: 50,
-          bottom: { xs: "15%", md: "27%" },
-          left: { xs: "48%", md: "-80%" },
+          bottom: sm ? "16%" : "13%",
+          left: sm ? "44%" : "47%",
         }}
       >
         <GiftBox
-          width={md ? "7rem" : "2.5rem"}
-          height={md ? "4.8rem" : "5rem"}
+          width={sm ? "5rem" : "3.3rem"}
+          height={sm ? "8rem" : "4.7rem"}
         />
-      </Box>
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={giftVariants}
+        transition={{ delay: 4.8, duration: 1.5, ease: "easeOut" }}
+        style={{
+          position: "absolute",
+          zIndex: 50,
+          bottom: sm ? "13%" : "15%",
+          left: sm ? "55%" : "21%",
+        }}
+      >
+        <GiftBox
+          width={sm ? "7rem" : "2.5rem"}
+          height={sm ? "4.8rem" : "5rem"}
+        />
+      </motion.div>
 
       <Navigation
         activeStep={activeStep}

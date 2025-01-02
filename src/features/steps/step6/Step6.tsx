@@ -25,8 +25,14 @@ export default function Step6({
   const { sm, md } = useBreakpoints();
 
   useEffect(() => {
-    setStepComplete(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setStepComplete(false);
+    const animationTimeoutId = setTimeout(() => {
+      setStepComplete(true);
+    }, 1800);
+
+    return () => {
+      clearTimeout(animationTimeoutId);
+    }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const giftVariants = {
@@ -144,12 +150,14 @@ export default function Step6({
         />
       </motion.div>
 
-      <Navigation
-        activeStep={activeStep}
-        goToPreviousStep={goToPreviousStep}
-        stepComplete={stepComplete}
-        goToNextStep={goToNextStep}
-      />
+      {stepComplete && (
+        <Navigation
+          activeStep={activeStep}
+          goToPreviousStep={goToPreviousStep}
+          stepComplete={stepComplete}
+          goToNextStep={goToNextStep}
+        />
+      )}
     </Stack>
   );
 }

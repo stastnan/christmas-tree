@@ -46,12 +46,15 @@ export default function Step4({
       >
         <Typography variant="h1">Let's decorate the tree!</Typography>
         <Typography variant="subtitle2">
-          Drag and drop the ornaments below. Place at least 5 and maximum 20
-          ornaments on the tree.
+          {`Drag and drop the ornaments ${
+            md ? "on the right side" : "below"
+          }. Place at least 5 and maximum 20
+          ornaments on the tree.`}
         </Typography>
 
         <Stack
           sx={{
+            width: { xs: "100%", md: "auto" },
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "center",
             alignItems: "center",
@@ -63,9 +66,10 @@ export default function Step4({
           <Stack
             sx={{
               flexDirection: { xs: "row", md: "column" },
-              justifyContent: "center",
+              justifyContent: { xs: "space-around", md: "center" },
               alignItems: "center",
-              gap: { xs: 2, md: 2 },
+              gap: { xs: 2, md: 4 },
+              width: { xs: "80%" },
             }}
           >
             <Ball color={Color.FrostedBlue} size="1.7rem" />

@@ -11,7 +11,7 @@ import {
 import { Color } from "../../app/config/styles/colors";
 import Step4 from "../steps/step4/Step4";
 import Step5 from "../steps/step5/Step5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Step6 from "../steps/step6/Step6";
 import Step7 from "../steps/step7/Step7";
 import { StepIconProps } from "@mui/material";
@@ -28,11 +28,17 @@ function CustomStepIcon(props: StepIconProps) {
   }
 }
 export default function DesktopStepper() {
+  const savedStep = parseInt(localStorage.getItem("activeStep") || "0");
   const [stepComplete, setStepComplete] = useState<boolean>(true);
+
   const { activeStep, goToNextStep, goToPreviousStep } = useStepNavigation(
-    0,
+    savedStep,
     5
   );
+
+  useEffect(() => {
+    localStorage.setItem("activeStep", activeStep.toString());
+  }, [activeStep]);
 
   const hasPet = localStorage.getItem("petChoice") as
     | "cat"

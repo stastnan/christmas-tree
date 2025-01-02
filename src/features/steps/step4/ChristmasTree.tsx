@@ -10,6 +10,7 @@ import CustomDragLayer from "./CustomDragLayer";
 import LittleBell from "./LittleBell";
 import LongOrnament from "./LongOrnament";
 import Star from "./Star";
+import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
 
 interface Position {
   x: number;
@@ -41,14 +42,29 @@ const itemTypeMap: Record<OrnamentType, React.ComponentType<any>> = {
 
 const maxOrnaments = 20;
 const minOrnaments = 5;
+const STORAGE_KEY = "christmas-tree-ornaments";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ChristmasTree({ setStepComplete }: Props) {
-  const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([]);
+  const [droppedItems, setDroppedItems] = useState<DroppedItem[]>(() => {
+    const savedItems = localStorage.getItem(STORAGE_KEY);
+    return savedItems ? JSON.parse(savedItems) : [];
+  });
+
+  const { md } = useBreakpoints();
   const treeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setDroppedItems([]);
+    localStorage.removeItem(STORAGE_KEY);
+  }, [md]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(droppedItems));
+  }, [droppedItems]);
 
   useEffect(() => {
     if (droppedItems.length >= minOrnaments) {

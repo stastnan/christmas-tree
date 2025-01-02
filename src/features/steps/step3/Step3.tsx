@@ -20,12 +20,20 @@ function Step3({
   setStepComplete,
   stepComplete,
 }: Props) {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(() => {
+    const savedChoice = localStorage.getItem("petChoice");
+    return savedChoice;
+  });
+
   const { showErrorMessage, showSuccessMessage } = useToast();
   const { md } = useBreakpoints();
 
   useEffect(() => {
-    setStepComplete(false);
+    if (selectedOption) {
+      setStepComplete(true);
+    } else {
+      setStepComplete(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -19,10 +19,17 @@ function Step2({
   setStepComplete,
   stepComplete,
 }: Props) {
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(() => {
+    const savedName = localStorage.getItem("userName");
+    return savedName || "";
+  });
 
   useEffect(() => {
-    setStepComplete(false);
+    if (userName.trim().length >= 2) {
+      setStepComplete(true);
+    } else {
+      setStepComplete(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -30,7 +37,7 @@ function Step2({
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(event.target.value);
-    setStepComplete(true);
+    setStepComplete(event.target.value.trim().length >= 2);
   };
 
   const handleSaveAndNextStep = () => {
@@ -38,14 +45,12 @@ function Step2({
       showErrorMessage("Name cannot be empty!");
       return;
     }
-
     if (userName.trim().length < 2) {
       showErrorMessage(
         "Please enter a valid name, that is longer than 2 characters!"
       );
       return;
     }
-
     localStorage.setItem("userName", userName.trim());
     showSuccessMessage("Name saved successfully!");
     goToNextStep();

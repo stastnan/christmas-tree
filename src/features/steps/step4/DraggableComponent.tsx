@@ -13,7 +13,7 @@ interface DraggableComponentProps {
   data?: any;
 }
 
-function DraggableComponent({
+export default function DraggableComponent({
   sx,
   children,
   type,
@@ -57,5 +57,3 @@ function DraggableComponent({
     </Box>
   );
 }
-
-export default DraggableComponent;

@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import { Color } from "../../../app/config/styles/colors";
 import DraggableComponent from "./DraggableComponent";
+import { Color } from "@config/styles/colors";
 
 interface BowProps {
   color?: string;

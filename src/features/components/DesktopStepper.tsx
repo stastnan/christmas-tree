@@ -1,20 +1,23 @@
-import { Box, Step, StepLabel, Stepper, Stack } from "@mui/material";
-import { Star, StarOutline } from "@mui/icons-material";
-import { useStepNavigation } from "../../app/hooks/useNavigation";
-import Step1 from "../steps/step1/Step1";
-import Step2 from "../steps/step2/Step2";
-import Step3 from "../steps/step3/Step3";
 import {
-  DESKTOP_HEADER_HEIGHT,
-  MOBILE_HEADER_HEIGHT,
-} from "../../app/config/constants";
-import { Color } from "../../app/config/styles/colors";
-import Step4 from "../steps/step4/Step4";
-import Step5 from "../steps/step5/Step5";
+  Box,
+  Step,
+  StepLabel,
+  Stepper,
+  Stack,
+  StepIconProps,
+} from "@mui/material";
+import { Star, StarOutline } from "@mui/icons-material";
+import { useStepNavigation } from "@hooks/useNavigation";
+import { Color } from "@config/styles/colors";
+import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from "@config/constants";
+import Step1 from "@features/steps/step1/Step1";
+import Step2 from "@features/steps/step2/Step2";
+import Step3 from "@features/steps/step3/Step3";
+import Step4 from "@features/steps/step4/Step4";
+import Step5 from "@features/steps/step5/Step5";
+import Step6 from "@features/steps/step6/Step6";
+import Step7 from "@features/steps/step7/Step7";
 import { useEffect, useState } from "react";
-import Step6 from "../steps/step6/Step6";
-import Step7 from "../steps/step7/Step7";
-import { StepIconProps } from "@mui/material";
 
 function CustomStepIcon(props: StepIconProps) {
   const { active = false, completed = false } = props;

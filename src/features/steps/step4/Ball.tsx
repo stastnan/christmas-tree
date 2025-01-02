@@ -1,11 +1,8 @@
 import { Box } from "@mui/material";
-import {
-  DEFAULT_SIZE,
-  SHADOW_COLOR,
-  GLOW_COLOR,
-} from "../../../app/config/constants";
+
 import DraggableComponent from "./DraggableComponent";
 import GeneralOrnamentProps from "./generalOrnamentTypes";
+import { DEFAULT_SIZE, GLOW_COLOR, SHADOW_COLOR } from "@config/constants";
 
 interface BallProps extends GeneralOrnamentProps {
   color: string;

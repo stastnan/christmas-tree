@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { SHADOW_COLOR, GLOW_COLOR } from "../../../app/config/constants";
 import DraggableComponent from "./DraggableComponent";
 import GeneralOrnamentProps from "./generalOrnamentTypes";
-import { Color } from "../../../app/config/styles/colors";
+import { Color } from "@config/styles/colors";
 
 export default function LongOrnament({
   color = Color.DarkRed,

@@ -1,9 +1,10 @@
+import DecoratedTree from "@features/components/DecoratedTree";
+import GiftBox from "@features/components/GiftBox";
+import Navigation from "@features/components/Navigation";
+import { useBreakpoints } from "@hooks/useBreakpoints";
 import { Box, Stack } from "@mui/material";
 import { motion } from "framer-motion";
-import GiftBox from "../../components/GiftBox";
-import DecoratedTree from "../../components/DecoratedTree";
-import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
-import Navigation from "../../components/Navigation";
+
 import { useEffect } from "react";
 
 interface Props {
@@ -14,7 +15,7 @@ interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Step6({
+export default function Step6({
   goToPreviousStep,
   goToNextStep,
   activeStep,
@@ -152,5 +153,3 @@ function Step6({
     </Stack>
   );
 }
-
-export default Step6;

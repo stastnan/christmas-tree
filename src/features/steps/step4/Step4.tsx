@@ -8,11 +8,10 @@ import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
 import LongOrnament from "./LongOrnament";
 import LittleBell from "./LittleBell";
 import Star from "./Star";
-import { Color } from "../../../app/config/styles/colors";
-import { useEffect } from "react";
 import Bow from "./Bow";
-import Navigation from "../../components/Navigation";
-import { DESKTOP_FOOTER_HEIGHT } from "../../../app/config/constants";
+import { Color } from "@config/styles/colors";
+import Navigation from "@features/components/Navigation";
+import { DESKTOP_FOOTER_HEIGHT } from "@config/constants";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +21,7 @@ interface Props {
   goToNextStep: () => void;
 }
 
-function Step4({
+export default function Step4({
   setStepComplete,
   stepComplete,
   activeStep,
@@ -30,11 +29,6 @@ function Step4({
   goToNextStep,
 }: Props) {
   const { md } = useBreakpoints();
-
-  useEffect(() => {
-    setStepComplete(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <DndProvider
@@ -84,5 +78,3 @@ function Step4({
     </DndProvider>
   );
 }
-
-export default Step4;

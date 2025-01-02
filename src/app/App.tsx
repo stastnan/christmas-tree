@@ -1,6 +1,5 @@
+import DesktopStepper from "@features/components/DesktopStepper";
 import { Box } from "@mui/material";
-
-import DesktopStepper from "../features/components/DesktopStepper";
 import { SnackbarProvider } from "notistack";
 
 function App() {

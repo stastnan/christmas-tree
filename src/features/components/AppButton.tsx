@@ -1,5 +1,5 @@
+import { Color } from "@config/styles/colors";
 import { Button, type SxProps, type Theme, Typography } from "@mui/material";
-import { Color } from "../../app/config/styles/colors";
 
 interface Props {
   type?: "button" | "submit" | "reset";

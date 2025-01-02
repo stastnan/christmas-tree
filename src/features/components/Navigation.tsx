@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
+
+import AppButton from "./AppButton";
 import {
-  MOBILE_FOOTER_HEIGHT,
   DESKTOP_FOOTER_HEIGHT,
   LAST_STEP,
-} from "../../app/config/constants";
-import AppButton from "./AppButton";
-import { Color } from "../../app/config/styles/colors";
+  MOBILE_FOOTER_HEIGHT,
+} from "@config/constants";
+import { Color } from "@config/styles/colors";
 
 interface Props {
   activeStep: number;
@@ -14,7 +15,7 @@ interface Props {
   goToPreviousStep?: () => void;
 }
 
-function Navigation({
+export default function Navigation({
   activeStep,
   stepComplete,
   goToNextStep,
@@ -70,5 +71,3 @@ function Navigation({
     </Box>
   );
 }
-
-export default Navigation;

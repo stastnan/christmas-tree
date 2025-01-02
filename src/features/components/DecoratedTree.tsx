@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { StarBorder } from "@mui/icons-material";
-import { Color } from "../../app/config/styles/colors";
-import NotDraggableBall from "./NotDraggableBall";
+import { Color } from "@config/styles/colors";
+import DecoratedTreeBall from "./DecoratedTreeBall";
 
 export default function DecoratedTree() {
   return (
@@ -112,43 +112,48 @@ export default function DecoratedTree() {
         }}
       />
 
-      <NotDraggableBall
+      <DecoratedTreeBall
         color={Color.FrostedBlue}
         size="1.5rem"
         top="10%"
         left="40%"
       />
-      <NotDraggableBall
+      <DecoratedTreeBall
         color={Color.CranberryRed}
         size="1.2rem"
         top="30%"
         left="25%"
       />
-      <NotDraggableBall
+      <DecoratedTreeBall
         color={Color.RoyalPurple}
         size="1rem"
         top="20%"
         left="60%"
       />
-      <NotDraggableBall
+      <DecoratedTreeBall
         color={Color.SoftOrange}
         size="1.3rem"
         top="50%"
         left="50%"
       />
-      <NotDraggableBall
+      <DecoratedTreeBall
         color={Color.LightCream}
         size="1.3rem"
         top="30%"
         left="60%"
       />
-      <NotDraggableBall
+      <DecoratedTreeBall
         color={Color.Charcoal}
         size="1.3rem"
         top="70%"
         left="60%"
       />
-      <NotDraggableBall color={Color.Gold} size="1.8rem" top="79%" left="10%" />
+      <DecoratedTreeBall
+        color={Color.Gold}
+        size="1.8rem"
+        top="79%"
+        left="10%"
+      />
     </Box>
   );
 }

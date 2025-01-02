@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Typography, Stack } from "@mui/material";
-import useToast from "../../../app/hooks/useToast";
-import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
-import { Color } from "../../../app/config/styles/colors";
-import AppButton from "../../components/AppButton";
-import Navigation from "../../components/Navigation";
+import AppButton from "@features/components/AppButton";
+import { useBreakpoints } from "@hooks/useBreakpoints";
+import useToast from "@hooks/useToast";
+import { Color } from "@config/styles/colors";
+import Navigation from "@features/components/Navigation";
 
 interface Props {
   activeStep: number;
@@ -13,7 +13,7 @@ interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
   stepComplete: boolean;
 }
-function Step3({
+export default function Step3({
   activeStep,
   goToPreviousStep,
   goToNextStep,
@@ -147,5 +147,3 @@ function Step3({
     </Stack>
   );
 }
-
-export default Step3;

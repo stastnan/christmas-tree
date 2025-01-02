@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@features/*": ["src/features/*"],
+      "@config/*": ["src/app/config/*"],
+      "@hooks/*": ["src/app/hooks/*"],
+      "@assets/*": ["src/assets/*"],
+      "@app/*": ["src/app/*"]
+    },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,

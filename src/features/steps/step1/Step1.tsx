@@ -1,5 +1,5 @@
+import Navigation from "@features/components/Navigation";
 import { Stack, Typography } from "@mui/material";
-import Navigation from "../../components/Navigation";
 import { useEffect } from "react";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Step1({
+export default function Step1({
   activeStep,
   goToNextStep,
   stepComplete,
@@ -49,5 +49,3 @@ function Step1({
     </Stack>
   );
 }
-
-export default Step1;

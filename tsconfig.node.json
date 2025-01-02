@@ -23,11 +23,9 @@
 
   "baseUrl": ".",
   "paths": {
-    "@pages/*": ["src/pages/*"],
     "@features/*": ["src/features/*"],
     "@config/*": ["src/app/config/*"],
     "@hooks/*": ["src/app/hooks/*"],
-    "@store/*": ["src/app/store/*"],
     "@assets/*": ["src/assets/*"],
     "@app/*": ["src/app/*"]
   },

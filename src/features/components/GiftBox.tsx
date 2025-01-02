@@ -1,5 +1,5 @@
+import { Color } from "@config/styles/colors";
 import { Box } from "@mui/material";
-import { Color } from "../../app/config/styles/colors";
 
 interface GiftBoxProps {
   width?: string;
@@ -8,7 +8,7 @@ interface GiftBoxProps {
   ribbonColor?: string;
 }
 
-function GiftBox({
+export default function GiftBox({
   width = "7rem",
   height = "7rem",
   boxColor = Color.CranberryRed,
@@ -51,5 +51,3 @@ function GiftBox({
     </Box>
   );
 }
-
-export default GiftBox;

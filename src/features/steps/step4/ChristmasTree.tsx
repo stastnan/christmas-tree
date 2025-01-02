@@ -3,14 +3,14 @@ import { Box } from "@mui/material";
 import { useDrop } from "react-dnd";
 import { XYCoord } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
-import { Color } from "../../../app/config/styles/colors";
+import { Color } from "@config/styles/colors";
+import Star from "./Star";
+import { useBreakpoints } from "@hooks/useBreakpoints";
 import Ball from "./Ball";
 import Bow from "./Bow";
 import CustomDragLayer from "./CustomDragLayer";
 import LittleBell from "./LittleBell";
 import LongOrnament from "./LongOrnament";
-import Star from "./Star";
-import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
 
 interface Position {
   x: number;
@@ -48,29 +48,38 @@ interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ChristmasTree({ setStepComplete }: Props) {
+export default function ChristmasTree({ setStepComplete }: Props) {
   const [droppedItems, setDroppedItems] = useState<DroppedItem[]>(() => {
     const savedItems = localStorage.getItem(STORAGE_KEY);
     return savedItems ? JSON.parse(savedItems) : [];
   });
 
   const { md } = useBreakpoints();
+  const prevBreakpointRef = useRef(md);
   const treeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setDroppedItems([]);
-    localStorage.removeItem(STORAGE_KEY);
-  }, [md]);
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(droppedItems));
-  }, [droppedItems]);
 
   useEffect(() => {
     if (droppedItems.length >= minOrnaments) {
       setStepComplete(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setStepComplete(droppedItems.length >= minOrnaments);
   }, [droppedItems.length, setStepComplete]);
+
+  useEffect(() => {
+    if (prevBreakpointRef.current !== md) {
+      setDroppedItems([]);
+      localStorage.removeItem(STORAGE_KEY);
+      prevBreakpointRef.current = md;
+    }
+  }, [md]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(droppedItems));
+  }, [droppedItems]);
 
   const [, drop] = useDrop(
     () => ({
@@ -231,5 +240,3 @@ function ChristmasTree({ setStepComplete }: Props) {
     </Box>
   );
 }
-
-export default ChristmasTree;

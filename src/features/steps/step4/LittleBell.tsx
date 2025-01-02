@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import { SHADOW_COLOR, GLOW_COLOR } from "../../../app/config/constants";
 import DraggableComponent from "./DraggableComponent";
 import GeneralOrnamentProps from "./generalOrnamentTypes";
+import { SHADOW_COLOR, GLOW_COLOR } from "@config/constants";
 
 export default function LittleBell({
   color = "#F4B400",

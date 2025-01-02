@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { TextField, Typography, Stack } from "@mui/material";
-import useToast from "../../../app/hooks/useToast";
-import { Color } from "../../../app/config/styles/colors";
-import Navigation from "../../components/Navigation";
+import useToast from "@hooks/useToast";
+import { Color } from "@config/styles/colors";
+import Navigation from "@features/components/Navigation";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,7 +12,7 @@ interface Props {
   goToNextStep: () => void;
 }
 
-function Step2({
+export default function Step2({
   activeStep,
   goToPreviousStep,
   goToNextStep,
@@ -105,5 +105,3 @@ function Step2({
     </Stack>
   );
 }
-
-export default Step2;

@@ -1,6 +1,6 @@
+import { Color } from "@config/styles/colors";
+import Navigation from "@features/components/Navigation";
 import { Stack, Typography } from "@mui/material";
-import { Color } from "../../../app/config/styles/colors";
-import Navigation from "../../components/Navigation";
 
 interface Props {
   goToPreviousStep: () => void;

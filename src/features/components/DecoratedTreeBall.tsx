@@ -7,7 +7,12 @@ interface BallProps {
   left: string;
 }
 
-const NotDraggableBall = ({ color, size, top, left }: BallProps) => {
+export default function DecoratedTreeBall({
+  color,
+  size,
+  top,
+  left,
+}: BallProps) {
   return (
     <Box
       sx={{
@@ -23,6 +28,4 @@ const NotDraggableBall = ({ color, size, top, left }: BallProps) => {
       }}
     />
   );
-};
-
-export default NotDraggableBall;
+}

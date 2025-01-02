@@ -3,9 +3,9 @@ import { Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import Cat from "./Cat";
 import Dog from "./Dog";
-import DecoratedTree from "../../components/DecoratedTree";
-import { useBreakpoints } from "../../../app/hooks/useBreakpoints";
-import Navigation from "../../components/Navigation";
+import { useBreakpoints } from "@hooks/useBreakpoints";
+import Navigation from "@features/components/Navigation";
+import DecoratedTree from "@features/components/DecoratedTree";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,7 +15,7 @@ interface Props {
   goToPreviousStep: () => void;
 }
 
-function Step5({
+export default function Step5({
   setStepComplete,
   stepComplete,
   activeStep,
@@ -36,14 +36,12 @@ function Step5({
     if (savedPet) {
       petTimeoutId = setTimeout(() => {
         setPet(savedPet);
-
         treeTimeoutId = setTimeout(() => {
           setStartTreeFall(true);
+          showNavigationId = setTimeout(() => {
+            setStepComplete(true);
+          }, 1700);
         }, 500);
-
-        showNavigationId = setTimeout(() => {
-          setStepComplete(true);
-        }, 1000);
       }, 2000);
     }
 
@@ -52,6 +50,7 @@ function Step5({
       clearTimeout(treeTimeoutId);
       clearTimeout(showNavigationId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -100,5 +99,3 @@ function Step5({
     </Stack>
   );
 }
-
-export default Step5;

@@ -18,19 +18,16 @@ export default function Step7({ activeStep, goToPreviousStep }: Props) {
   let message = "";
 
   if (petChoice === "dog") {
-    message = `
-      Oh no! The tree's down and chaos is everywhere. But hey, who cares? 
+    message = `Oh no! The tree's down and chaos is everywhere. But hey, who cares? 
       You've got your best buddy wagging his/her tail and ready for cuddles.
     `;
   } else if (petChoice === "cat") {
-    message = `
-      What the fluff just happened here?! Well, it was just a tree. 
+    message = `What the fluff just happened here?! Well, it was just a tree. 
       Your little monster is purring on your lap, and together, 
       you can enjoy the laziest of Christmas days.
     `;
   } else {
-    message = `
-      No pet-induced stress for you, but there's still enough chaos to go around! 
+    message = `No pet-induced stress for you, but there's still enough chaos to go around! 
       Take care of yourself, enjoy the wonderful holiday, and make the most 
       of this special time with your family.
     `;

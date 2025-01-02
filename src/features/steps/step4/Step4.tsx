@@ -11,7 +11,6 @@ import Star from "./Star";
 import Bow from "./Bow";
 import { Color } from "@config/styles/colors";
 import Navigation from "@features/components/Navigation";
-import { DESKTOP_FOOTER_HEIGHT } from "@config/constants";
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,7 +37,7 @@ export default function Step4({
       <Stack
         sx={{
           width: "100%",
-          height: `calc(100% - ${DESKTOP_FOOTER_HEIGHT}px)`,
+          height: { xs: "100%", md: "auto" },
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
@@ -50,24 +49,34 @@ export default function Step4({
           Drag and drop the ornaments below. Place at least 5 and maximum 20
           ornaments on the tree.
         </Typography>
-        <ChristmasTree setStepComplete={setStepComplete} />
 
         <Stack
           sx={{
-            width: md ? "60%" : "100%",
-            flexDirection: "row",
-            justifyContent: md ? "space-between" : "center",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "center",
             alignItems: "center",
-            gap: md ? 0 : 3,
+            gap: { xs: 3, md: 15 },
           }}
         >
-          <Ball color={Color.FrostedBlue} size="1.7rem" />
-          <Ball color={Color.CranberryRed} size="1.2rem" />
-          <LongOrnament color={Color.RoyalPurple} size="1.2rem" />
-          <LittleBell color={Color.BellYellow} size="1.1rem" />
-          <Star size="1.5rem" color={Color.SoftOrange} />
-          <Bow size="2rem" color={Color.DarkRed} />
+          <ChristmasTree setStepComplete={setStepComplete} />
+
+          <Stack
+            sx={{
+              flexDirection: { xs: "row", md: "column" },
+              justifyContent: "center",
+              alignItems: "center",
+              gap: { xs: 2, md: 2 },
+            }}
+          >
+            <Ball color={Color.FrostedBlue} size="1.7rem" />
+            <Ball color={Color.CranberryRed} size="1.2rem" />
+            <LongOrnament color={Color.RoyalPurple} size="1.2rem" />
+            <LittleBell color={Color.BellYellow} size="1.1rem" />
+            <Star size="1.5rem" color={Color.SoftOrange} />
+            <Bow size="2rem" color={Color.DarkRed} />
+          </Stack>
         </Stack>
+
         <Navigation
           activeStep={activeStep}
           stepComplete={stepComplete}

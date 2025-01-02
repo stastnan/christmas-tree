@@ -58,7 +58,6 @@ export default function DesktopStepper() {
         textAlign: "center",
         height: { xs: "100dvh", md: "100vh" },
         justifyContent: "space-between",
-        overflow: "hidden",
       }}
     >
       <Stack
@@ -71,7 +70,7 @@ export default function DesktopStepper() {
           width: "100%",
           justifyContent: "space-between",
           alignItems: "center",
-          overflowY: "hidden",
+          zIndex: 10,
         }}
       >
         <Stepper
@@ -107,12 +106,11 @@ export default function DesktopStepper() {
         sx={{
           mt: { xs: -2, md: 4 },
           mb: { xs: 5, md: 2 },
-          px: { xs: "2rem", md: 0 },
+          px: { xs: 2, md: 0 },
           height: {
-            xs: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px)`,
+            xs: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px )`,
             md: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
           },
-          overflow: "hidden",
         }}
       >
         {activeStep === 0 && (

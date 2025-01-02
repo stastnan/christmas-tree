@@ -70,6 +70,7 @@ export default function Step4({
               alignItems: "center",
               gap: { xs: 2, md: 4 },
               width: { xs: "80%" },
+              zIndex: 101,
             }}
           >
             <Ball color={Color.FrostedBlue} size="1.7rem" />

@@ -42,6 +42,7 @@ interface DragItem {
   type: keyof typeof itemTypeMap;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
+  source: boolean;
 }
 
 export default function CustomDragLayer() {
@@ -56,7 +57,7 @@ export default function CustomDragLayer() {
 
   if (!isDragging || !item) return null;
 
-  const ComponentToRender = itemTypeMap[item.type];
+  const ComponentToRender = itemTypeMap[item.type as keyof typeof itemTypeMap];
 
   return (
     <Box sx={layerStyles}>

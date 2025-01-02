@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useDrop } from "react-dnd";
 import { XYCoord } from "react-dnd";
-
 import { v4 as uuidv4 } from "uuid";
 import { Color } from "../../../app/config/styles/colors";
 import Ball from "./Ball";
@@ -39,7 +38,9 @@ const itemTypeMap: Record<OrnamentType, React.ComponentType<any>> = {
   bow: Bow,
   littleBell: LittleBell,
 };
+
 const maxOrnaments = 20;
+const minOrnaments = 5;
 
 interface Props {
   setStepComplete: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,33 +49,33 @@ interface Props {
 function ChristmasTree({ setStepComplete }: Props) {
   const [droppedItems, setDroppedItems] = useState<DroppedItem[]>([]);
   const treeRef = useRef<HTMLDivElement>(null);
-  const [dropsCount, setDropsCount] = useState(0);
 
   useEffect(() => {
-    if (dropsCount >= 5) setStepComplete(true);
-  }, [dropsCount, setStepComplete]);
+    if (droppedItems.length >= minOrnaments) {
+      setStepComplete(true);
+    }
+  }, [droppedItems.length, setStepComplete]);
 
-  const [, drop] = useDrop(() => ({
-    accept: Object.keys(itemTypeMap) as OrnamentType[],
-    drop: (item: { type: OrnamentType; data: OrnamentData }, monitor) => {
-      const clientOffset = monitor.getClientOffset();
-      if (clientOffset && treeRef.current) {
-        const treeRect = treeRef.current.getBoundingClientRect();
-        const position = getAdjustedPosition(clientOffset, treeRect);
+  const [, drop] = useDrop(
+    () => ({
+      accept: Object.keys(itemTypeMap) as OrnamentType[],
+      drop: (item: { type: OrnamentType; data: OrnamentData }, monitor) => {
+        const clientOffset = monitor.getClientOffset();
+        if (clientOffset && treeRef.current) {
+          const treeRect = treeRef.current.getBoundingClientRect();
+          const position = getAdjustedPosition(clientOffset, treeRect);
 
-        if (
-          isWithinTreeBoundaries(position, treeRect) &&
-          droppedItems.length < maxOrnaments
-        ) {
-          addOrnament(item, position);
+          if (
+            isWithinTreeBoundaries(position, treeRect) &&
+            droppedItems.length < maxOrnaments
+          ) {
+            addOrnament(item, position);
+          }
         }
-      }
-    },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-      canDrop: !!monitor.canDrop(),
+      },
     }),
-  }));
+    [droppedItems.length]
+  );
 
   drop(treeRef);
 
@@ -82,10 +83,9 @@ function ChristmasTree({ setStepComplete }: Props) {
     clientOffset: XYCoord,
     treeRect: DOMRect
   ): Position => {
-    const adjustedX = clientOffset.x - treeRect.left - treeRect.width / 2;
+    const adjustedX = clientOffset.x - treeRect.left;
     const adjustedY = clientOffset.y - treeRect.top;
-
-    return { x: adjustedX + treeRect.width / 2, y: adjustedY };
+    return { x: adjustedX, y: adjustedY };
   };
 
   const isWithinTreeBoundaries = (
@@ -93,28 +93,15 @@ function ChristmasTree({ setStepComplete }: Props) {
     treeRect: DOMRect
   ): boolean => {
     const { x, y } = position;
-    const centerX = treeRect.width / 2;
-
-    const trunkTop = treeRect.height - 80;
-    const trunkLeft = centerX - 30;
-    const trunkRight = centerX + 30;
-
-    if (
-      y >= trunkTop &&
-      y <= treeRect.height &&
-      x >= trunkLeft &&
-      x <= trunkRight
-    ) {
-      return false;
-    }
-
-    return true;
+    return x >= 0 && y >= 0 && x <= treeRect.width && y <= treeRect.height;
   };
 
   const addOrnament = (
     item: { type: OrnamentType; data: OrnamentData },
     position: Position
   ) => {
+    if (droppedItems.length >= maxOrnaments) return;
+
     const newItem: DroppedItem = {
       id: uuidv4(),
       type: item.type,
@@ -122,7 +109,25 @@ function ChristmasTree({ setStepComplete }: Props) {
       position,
     };
     setDroppedItems((prev) => [...prev, newItem]);
-    setDropsCount((prev) => prev + 1);
+  };
+
+  const renderStaticOrnament = (item: DroppedItem) => {
+    const Component = itemTypeMap[item.type];
+    if (!Component) return null;
+
+    return (
+      <Box
+        key={item.id}
+        sx={{
+          position: "absolute",
+          left: item.position.x,
+          top: item.position.y,
+          zIndex: 4,
+        }}
+      >
+        <Component {...item.data} />
+      </Box>
+    );
   };
 
   return (
@@ -146,28 +151,11 @@ function ChristmasTree({ setStepComplete }: Props) {
           width: { xs: "160px", md: "320px" },
           height: { xs: "205px", md: "410px" },
           backgroundColor: "transparent",
+          cursor:
+            droppedItems.length >= maxOrnaments ? "not-allowed" : "default",
         }}
       >
-        {droppedItems.map((item) => {
-          const OrnamentComponent = itemTypeMap[item.type];
-          return (
-            <Box
-              key={item.id}
-              sx={{
-                position: "absolute",
-                top: `${item.position.y}px`,
-                left: `${item.position.x}px`,
-                zIndex: 10,
-                transition: "transform 0.3s ease",
-                "&:hover": {
-                  transform: "scale(1.1)",
-                },
-              }}
-            >
-              <OrnamentComponent {...item.data} />
-            </Box>
-          );
-        })}
+        {droppedItems.map(renderStaticOrnament)}
 
         <Box
           sx={{

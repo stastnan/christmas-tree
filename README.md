@@ -42,6 +42,9 @@ Check installation:
 - yarn dev
   This command starts the project on your local server.
 
-I’m always open to networking, opportunities, and collaborations. Feel free to reach out to me via email at nik.stastna@gmail.com.
+## About me
 
-I'm also #openToWork!
+- Email: nik.stastna@gmail.com
+- Status: #openToWork 🚀
+
+I’m always open to networking, opportunities, and collaborations. Feel free to reach out to me via email listed above.

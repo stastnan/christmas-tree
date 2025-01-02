@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TextField, Typography, Stack } from "@mui/material";
+import { TextField, Typography, Stack, FormControl } from "@mui/material";
 import useToast from "@hooks/useToast";
 import { Color } from "@config/styles/colors";
 import Navigation from "@features/components/Navigation";
@@ -69,33 +69,35 @@ export default function Step2({
       <Typography variant="h1" sx={{ marginBottom: 2 }}>
         Please, enter your name
       </Typography>
-      <TextField
-        placeholder="Enter your name..."
-        variant="outlined"
-        value={userName}
-        onChange={handleInputChange}
-        sx={{
-          fontSize: "16px",
-          "& input": {
+      <FormControl>
+        <TextField
+          placeholder="Enter your name..."
+          variant="outlined"
+          value={userName}
+          onChange={handleInputChange}
+          sx={{
             fontSize: "16px",
-          },
-          "& label": {
-            fontSize: "16px",
-          },
-          width: "300px",
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: Color.SoftOrange,
+            "& input": {
+              fontSize: "16px",
             },
-            "&:hover fieldset": {
-              borderColor: Color.SoftOrange,
+            "& label": {
+              fontSize: "16px",
             },
-            "&.Mui-focused fieldset": {
-              borderColor: Color.SoftOrange,
+            width: "300px",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: Color.SoftOrange,
+              },
+              "&:hover fieldset": {
+                borderColor: Color.SoftOrange,
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: Color.SoftOrange,
+              },
             },
-          },
-        }}
-      />
+          }}
+        />
+      </FormControl>
       <Navigation
         activeStep={activeStep}
         goToNextStep={handleSaveAndNextStep}

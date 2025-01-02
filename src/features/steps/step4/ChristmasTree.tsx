@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { useDrop } from "react-dnd";
 import { XYCoord } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
@@ -11,7 +11,7 @@ import Bow from "./Bow";
 import CustomDragLayer from "./CustomDragLayer";
 import LittleBell from "./LittleBell";
 import LongOrnament from "./LongOrnament";
-
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 interface Position {
   x: number;
   y: number;
@@ -80,6 +80,11 @@ export default function ChristmasTree({ setStepComplete }: Props) {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(droppedItems));
   }, [droppedItems]);
+
+  const handleOrnamentsReset = () => {
+    setDroppedItems([]);
+    localStorage.removeItem(STORAGE_KEY);
+  };
 
   const [, drop] = useDrop(
     () => ({
@@ -169,6 +174,21 @@ export default function ChristmasTree({ setStepComplete }: Props) {
         backgroundColor: "transparent",
       }}
     >
+      {droppedItems.length >= 5 && (
+        <IconButton
+          aria-label="delete all ornaments from the tree"
+          onClick={handleOrnamentsReset}
+          sx={{
+            position: "absolute",
+            left: { xs: "10%", sm: "0%", md: "-35%" },
+            bottom: "50%",
+            zIndex: 10,
+          }}
+        >
+          <DeleteOutlineIcon />
+        </IconButton>
+      )}
+
       <CustomDragLayer />
       <Box
         ref={treeRef}

@@ -8,6 +8,7 @@ interface Props {
   disabled?: boolean;
   text: string;
   sx?: SxProps<Theme>;
+  ariaLabel?: string;
 }
 
 export default function AppButton({
@@ -17,6 +18,7 @@ export default function AppButton({
   sx,
   text,
   onClick,
+  ariaLabel,
 }: Props) {
   return (
     <Button
@@ -24,6 +26,7 @@ export default function AppButton({
       variant={variant}
       onClick={onClick}
       disabled={disabled}
+      aria-label={ariaLabel}
       sx={{
         height: { xs: 56, md: 45 },
         textTransform: "none",

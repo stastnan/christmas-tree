@@ -13,6 +13,7 @@ interface Props {
   stepComplete?: boolean;
   goToNextStep?: () => void;
   goToPreviousStep?: () => void;
+  handleOrnamentsReset?: () => void;
 }
 
 export default function Navigation({
@@ -40,6 +41,7 @@ export default function Navigation({
     >
       <AppButton
         text="Back"
+        aria-label="go back to the previous step"
         variant="outlined"
         onClick={goToPreviousStep}
         disabled={activeStep === 0}
@@ -56,6 +58,7 @@ export default function Navigation({
 
       {activeStep < 5 && (
         <AppButton
+          aria-label="continue to the next step"
           text="Next"
           variant="contained"
           onClick={goToNextStep}

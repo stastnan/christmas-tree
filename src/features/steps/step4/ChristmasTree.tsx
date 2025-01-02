@@ -123,6 +123,7 @@ function ChristmasTree({ setStepComplete }: Props) {
           left: item.position.x,
           top: item.position.y,
           zIndex: 4,
+          pointerEvents: "none",
         }}
       >
         <Component {...item.data} />

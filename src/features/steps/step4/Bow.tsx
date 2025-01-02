@@ -12,8 +12,16 @@ export default function Bow({
   size = "2rem",
 }: BowProps) {
   return (
-    <DraggableComponent type="bow" data={{ color, size }} sx={{}}>
-      <Box sx={{ width: size, height: size, position: "relative" }}>
+    <DraggableComponent
+      type="bow"
+      data={{ color, size }}
+      sx={{
+        width: size,
+        height: size,
+        position: "relative",
+      }}
+    >
+      <Box sx={{ width: "100%", height: "100%", position: "relative" }}>
         <Box
           sx={{
             position: "absolute",
@@ -25,12 +33,11 @@ export default function Bow({
             borderRadius: "50%",
             transform: "rotate(-30deg)",
             boxShadow: `
-            inset -2px -2px 4px rgba(0, 0, 0, 0.2),
-            2px 2px 4px rgba(0, 0, 0, 0.2)
-          `,
+              inset -2px -2px 4px rgba(0, 0, 0, 0.2),
+              2px 2px 4px rgba(0, 0, 0, 0.2)
+            `,
           }}
         />
-
         <Box
           sx={{
             position: "absolute",
@@ -42,12 +49,11 @@ export default function Bow({
             borderRadius: "50%",
             transform: "rotate(30deg)",
             boxShadow: `
-            inset -2px -2px 4px rgba(0, 0, 0, 0.2),
-            2px 2px 4px rgba(0, 0, 0, 0.2)
-          `,
+              inset -2px -2px 4px rgba(0, 0, 0, 0.2),
+              2px 2px 4px rgba(0, 0, 0, 0.2)
+            `,
           }}
         />
-
         <Box
           sx={{
             position: "absolute",
@@ -61,7 +67,6 @@ export default function Bow({
             boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
           }}
         />
-
         <Box
           sx={{
             position: "absolute",

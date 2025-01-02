@@ -32,12 +32,12 @@ export default function Step4({
   return (
     <DndProvider
       backend={md ? HTML5Backend : TouchBackend}
-      options={{ enableMouseEvents: true }}
+      options={{ enableMouseEvents: true, enableTouchEvents: true }}
     >
       <Stack
         sx={{
           width: "100%",
-          height: { xs: "100%", md: "auto" },
+          height: "100%",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",

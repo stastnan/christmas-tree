@@ -9,7 +9,12 @@ import {
 import { Star, StarOutline } from "@mui/icons-material";
 import { useStepNavigation } from "@hooks/useNavigation";
 import { Color } from "@config/styles/colors";
-import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from "@config/constants";
+import {
+  MOBILE_HEADER_HEIGHT,
+  DESKTOP_HEADER_HEIGHT,
+  DESKTOP_FOOTER_HEIGHT,
+  MOBILE_FOOTER_HEIGHT,
+} from "@config/constants";
 import Step1 from "@features/steps/step1/Step1";
 import Step2 from "@features/steps/step2/Step2";
 import Step3 from "@features/steps/step3/Step3";
@@ -57,13 +62,16 @@ export default function DesktopStepper() {
         width: "100vw",
         textAlign: "center",
         height: { xs: "100dvh", md: "100vh" },
-        justifyContent: "space-between",
       }}
     >
       <Stack
         direction="row"
         sx={{
           height: {
+            xs: `${MOBILE_HEADER_HEIGHT}px`,
+            md: `${DESKTOP_HEADER_HEIGHT}px`,
+          },
+          minHeight: {
             xs: `${MOBILE_HEADER_HEIGHT}px`,
             md: `${DESKTOP_HEADER_HEIGHT}px`,
           },
@@ -104,12 +112,12 @@ export default function DesktopStepper() {
       </Stack>
       <Box
         sx={{
-          mt: { xs: -2, md: 4 },
-          mb: { xs: 5, md: 2 },
+          mt: { xs: 0, md: 4 },
+          mb: { xs: 0, md: 2 },
           px: { xs: 2, md: 0 },
           height: {
-            xs: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px )`,
-            md: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
+            xs: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px - ${MOBILE_FOOTER_HEIGHT}px - 5rem)`,
+            md: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px - ${DESKTOP_FOOTER_HEIGHT}px )`,
           },
         }}
       >

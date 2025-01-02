@@ -9,7 +9,6 @@ function App() {
       <Box
         sx={{
           width: "100vw",
-          height: "100vh",
           background: `
       radial-gradient(
         circle at top left,

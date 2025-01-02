@@ -6,7 +6,6 @@ import Step2 from "../steps/step2/Step2";
 import Step3 from "../steps/step3/Step3";
 import {
   DESKTOP_HEADER_HEIGHT,
-  MOBILE_FOOTER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "../../app/config/constants";
 import { Color } from "../../app/config/styles/colors";
@@ -48,7 +47,7 @@ export default function DesktopStepper() {
       sx={{
         width: "100vw",
         textAlign: "center",
-        height: { xs: "90vh", md: "100vh" },
+        height: { xs: "100dvh", md: "100vh" },
         justifyContent: "space-between",
         overflow: "hidden",
       }}
@@ -57,7 +56,7 @@ export default function DesktopStepper() {
         direction="row"
         sx={{
           height: {
-            xs: `calc(${MOBILE_HEADER_HEIGHT}px)`,
+            xs: `${MOBILE_HEADER_HEIGHT}px`,
             md: `${DESKTOP_HEADER_HEIGHT}px`,
           },
           width: "100%",
@@ -101,9 +100,10 @@ export default function DesktopStepper() {
           mb: { xs: 5, md: 2 },
           px: { xs: "2rem", md: 0 },
           height: {
-            xs: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px - ${MOBILE_FOOTER_HEIGHT}px)`,
+            xs: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px)`,
             md: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
           },
+          overflow: "hidden",
         }}
       >
         {activeStep === 0 && (

@@ -34,7 +34,7 @@ function Navigation({
         px: { xs: "1rem", md: "3rem" },
         position: "fixed",
         bottom: 0,
-        zIndex: 1000,
+        zIndex: 100,
       }}
     >
       <AppButton
